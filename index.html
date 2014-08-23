@@ -1,0 +1,93 @@
+<html>
+<head>
+    <script>
+        function factorial(n) {
+            var product = 1;
+            while (n > 1) {
+                product *= n;
+                n--;
+            }
+            return product;
+        }
+
+        factorial(4);
+
+        function factorial2(n) {
+            var i, product = 1;
+            for(i=2; i <= n; i++)
+            product *= i;
+            console.log(product);
+        }
+
+        factorial2(5)
+
+       var Point = function(x,y) {
+           this.x = x;
+           this.y = y;
+       }
+
+        var p = new Point(1,1);
+
+        Point.prototype.r = function() {
+           return Math.sqrt(this.x * this.x +
+                    this.y*this.y);
+        };
+
+        console.log(p.r());
+
+        function moveon() {
+            var answer = confirm("Ready to move on");
+            if (answer) window.location = "http://google.com";
+        }
+
+
+
+        function debug(msg) {
+            var log = document.getElementById("debuglog");
+            if (!log) {
+                log = document.createElement("div");
+                log.id = "debuglog";
+                log.innerHTML = "<h1>Debug Log</h1>";
+                document.body.appendChild(log);
+            }
+            var pre;
+            pre = document.createElement("pre");
+            var text;
+            text = document.createTextNode(msg);
+            pre.appendChild(text);
+            log.appendChild(pre);
+        }
+
+        function hide(e, reflow) {
+            if (reflow) {
+                e.style.display = "none"
+            }
+            else {
+                e.style.visibility = "hidden";
+            }
+        }
+
+        function highlight(e) {
+            if (!e.className) e.className = " hilite";
+            else e.className += " hilite";
+        }
+
+        debug("hey");
+
+        window.onload = function() {
+            var images = document.getElementsByTagName("img");
+            for(var i=0; i < images.length; i++) {
+                var image = images[i];
+                if (image.addEventListener)
+                    image.addEventListener("click", hide, false);
+                else
+                    image.attachEvent("onclick", hide);
+            }
+            function hide(event) { event.target.style.visibility = "hidden"; }
+        }
+    </script>
+</head>
+<body>
+    <p style="background: orange;">Hello World</p>
+</body>
+</html>
